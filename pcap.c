@@ -83,6 +83,8 @@ while(1)
       printf("데이터는 %s", Data)
    }
 
-
+      /*세션 종료!*/
+      pcap_close(handle);
+      return(0);
 
 }
