@@ -70,5 +70,19 @@ while(1)
       printf("Destination IP Address: %d.%d.%d.%d \n", packet[30], packet[31], packet[32], packet[33]);
    }
 
+      
+      /*이것은 TCP 헤더이다.
+      소스 포트와 목적지 포트를 보여준다.
+      현재 피킷에서 54를 더해 데이터를 보여준다.*/
+
+      printf("다음은 TCP 헤더 정보이다. \n");
+      printf("Source Port: %d", packet[34]*256+packet[35]);
+      printf("Destination Port: %d", packet[36]*256+packet[37]);
+
+      int DP = packet + 54;
+      printf("데이터는 %s", Data)
+   }
+
+
 
 }
