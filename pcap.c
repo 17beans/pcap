@@ -39,6 +39,7 @@ if (pcap_setfilter(handle, &fp) == -1) {
    fprintf(stderr, "필터를 설치할 수 없습니다.  %s: %s\n", filter_exp, pcap_geterr(handle));
    return(2);
 
-   }
+}
+
 
 
