@@ -42,4 +42,33 @@ if (pcap_setfilter(handle, &fp) == -1) {
 }
 
 
+while(1)
+{
+   
+   /* 패킷 잡기 */
+   pcap_mod=pcap_next_ex(handle, &header, &packet);
 
+   /* 패킷 길이 출력 */
+   printf("Jacked a packet with length of [%d]\n", header.len);
+   if(pcap_mod == 0)
+   {   
+      continue;   
+   }
+
+   printf("다음은 이더넷 헤더 정보이다. \n");
+   printf("목적지 MAC 주소: %02x:%02x:%02x:%02x:%02x:%02x \n",packet[0],packet[1],packet[2],packet[3],packet[4],packet[5]);
+   printf("소스 MAC 주소: %02x:%02x:%02x:%02x:%02x:%02x \n",packet[6],packet[7],packet[8],packet[9],packet[10],packet[11]);
+
+/*만약 08 00 값을 받았을 때 이 ip 헤더는 ~
+소스 ip 주소는 패킷 26번, 27번, 28번, 29번의 번호를 출력
+목적지 ip 주소는 패킷 30, 31, 32, 33번의 번호를 출력*/
+
+   if(packet[12]==0x08 && packet[13]==0x00)
+   {
+      printf("다음은 IP 헤더 정보이다. \n");
+      printf("Source IP Address: %d.%d.%d.%d \n",packet[26], packet[27], packet[28], packet[29]);
+      printf("Destination IP Address: %d.%d.%d.%d \n", packet[30], packet[31], packet[32], packet[33]);
+   }
+
+
+}
