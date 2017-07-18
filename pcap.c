@@ -49,11 +49,11 @@ int main(int argc, char *argv[])
    {
       
       /* 패킷 잡기 */
-      pcap_mod=pcap_next_ex(handle, &header, &packet);
+      pcap_stat=pcap_next_ex(handle, &header, &packet);
 
       /* 패킷 길이 출력 */
       printf("패킷 길이는 [%d]이다.\n", header.len);
-      if(pcap_mod == 0)
+      if(pcap_stat == 0)
       {   
          continue;   
       }
